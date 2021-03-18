@@ -8,6 +8,8 @@ public class Controller : MonoBehaviour
     private Rigidbody2D rb2d;
     private float moveInput;
     public float speed = 10f;
+    public GameObject cam;
+    public GameObject player;
     // private bool isStarted = false;
     // private float topScore = 0.0f;
     // public Text scoreText;
@@ -18,6 +20,8 @@ public class Controller : MonoBehaviour
     {
 
         rb2d = GetComponent<Rigidbody2D>();
+        cam = GameObject.Find("Camera");
+        player = GameObject.Find("Player");
 
         // rb2d.gravityScale = 0;
         // rb2d.velocity = Vector3.zero;
@@ -72,6 +76,9 @@ public class Controller : MonoBehaviour
 
             moveInput = Input.GetAxis("Horizontal");
             rb2d.velocity = new Vector2(moveInput * speed, rb2d.velocity.y);
+            
+            if(cam.transform.position.y - player.transform.position.y < 1)
+                cam.transform.position = new Vector3(0, player.transform.position.y + 1, -15);
 
         // }
 
