@@ -80,6 +80,8 @@ public class Controller : MonoBehaviour
             if(cam.transform.position.y - player.transform.position.y < 1)
                 cam.transform.position = new Vector3(0, player.transform.position.y + 1, -15);
 
+            if(cam.transform.position.y - player.transform.position.y > 10)
+                Destroy(player);
         // }
 
     }
