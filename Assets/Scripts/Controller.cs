@@ -7,82 +7,35 @@ public class Controller : MonoBehaviour
 {
     private Rigidbody2D rb2d;
     private float moveInput;
-    public float speed = 10f;
+    public float speed = 1500f;
     public GameObject cam;
     public GameObject player;
-    // private bool isStarted = false;
-    // private float topScore = 0.0f;
-    // public Text scoreText;
-    // public Text startText;
 
     // Start is called before the first frame update
     void Start()
     {
-
         rb2d = GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Camera");
         player = GameObject.Find("Player");
-
-        // rb2d.gravityScale = 0;
-        // rb2d.velocity = Vector3.zero;
-
     }
-
-    //  void Update()
-    // {
-
-    //     if(Input.GetKeyDown(KeyCode.Space) && isStarted == false)
-    //     {
-
-    //         isStarted = true;
-    //         startText.gameObject.SetActive(false);
-    //         rb2d.gravityScale = 5f;
-
-    //     }
-
-    //     if (isStarted == true)
-    //     {
-
-    //         if (moveInput < 0)
-    //         {
-
-    //             this.GetComponent<SpriteRenderer>().flipX = false;
-
-    //         }
-    //         else
-    //         {
-
-    //             this.GetComponent<SpriteRenderer>().flipX = true;
-
-    //         }
-
-    //         if (rb2d.velocity.y > 0 && transform.position.y > topScore)
-    //         {
-
-    //             topScore = transform.position.y;
-
-    //         }
-
-    //         scoreText.text = "Score: " + Mathf.Round(topScore).ToString();
-    //     }
-
-    // }
 
     void FixedUpdate()
     {
+        if (Input.acceleration.x >= .125 || Input.acceleration.x <= -.125) {
+            float horizontalMove = Input.acceleration.x * 3f  * speed;
+            rb2d.velocity = new Vector2(horizontalMove, rb2d.velocity.y);
+        }
+        else {
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
+        
+        Debug.Log(Input.acceleration.x);
+        
+        
+        if(cam.transform.position.y - player.transform.position.y < 1)
+            cam.transform.position = new Vector3(0, player.transform.position.y + 1, -15);
 
-        // if (isStarted == true)
-        // {
-
-            moveInput = Input.GetAxis("Horizontal");
-            rb2d.velocity = new Vector2(moveInput * speed, rb2d.velocity.y);
-            
-            if(cam.transform.position.y - player.transform.position.y < 1)
-                cam.transform.position = new Vector3(0, player.transform.position.y + 1, -15);
-
-            if(cam.transform.position.y - player.transform.position.y > 10)
-                Destroy(player);
-        // }
-
+        if(cam.transform.position.y - player.transform.position.y > 10)
+            Destroy(player);
     }
 }
