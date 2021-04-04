@@ -5,14 +5,25 @@ using UnityEngine;
 public class moveBG : MonoBehaviour
 {
     public Transform centerBackground;
-    public float delta = 10.0f;
-    void Update()
-    {
-        if (transform.position.y >= centerBackground.position.y + delta) {
-            centerBackground.position = new Vector2(centerBackground.position.x, transform.position.y + delta);
+    public Transform topBackground;
+    private float delta;
+    private bool centerMove = true;
+    private void Start() {
+        delta = topBackground.position.y - centerBackground.position.y;
+    }
+    void Update() {
+        if (centerMove) {
+            if (transform.position.y >= topBackground.position.y) {
+                centerBackground.position = new Vector2(centerBackground.position.x, topBackground.position.y + delta);
+                centerMove = false;
+            }
         }
-        else if (transform.position.y <= centerBackground.position.y - delta) {
-            centerBackground.position = new Vector2(centerBackground.position.x, transform.position.y - delta);
+        else {
+            if (transform.position.y >= centerBackground.position.y) {
+                topBackground.position = new Vector2(topBackground.position.x, centerBackground.position.y + delta);
+                centerMove = true;
+            }
         }
+        
     }
 }
