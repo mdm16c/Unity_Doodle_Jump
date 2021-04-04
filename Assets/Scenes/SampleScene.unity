@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35630775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -16.38}
+  m_LocalPosition: {x: 0, y: 1.5, z: -18.8}
   m_LocalScale: {x: 0, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -551,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 1011716717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 8, z: 1}
+  m_LocalScale: {x: 6, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -750,7 +750,7 @@ Transform:
   m_GameObject: {fileID: 1204373869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 58.24, z: 0}
-  m_LocalScale: {x: 5, y: 8, z: 1}
+  m_LocalScale: {x: 6, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1207,7 +1207,7 @@ PrefabInstance:
     - target: {fileID: 8906416895388944793, guid: b7f962475d468f64fa68bafc16c605d4,
         type: 3}
       propertyPath: m_Name
-      value: Platform (7)
+      value: Debug Wrapping Platform
       objectReference: {fileID: 0}
     - target: {fileID: 8906416895388944793, guid: b7f962475d468f64fa68bafc16c605d4,
         type: 3}
@@ -1228,6 +1228,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2110532974}
+    - target: {fileID: 7788711730967030924, guid: def9a3e4bfa1c344da69223c88adf6a2,
+        type: 3}
+      propertyPath: breakPrefab
+      value: 
+      objectReference: {fileID: 12539019277371446, guid: a2514a65c9619d84cae63965477acbb4,
+        type: 3}
     - target: {fileID: 7788711730967030924, guid: def9a3e4bfa1c344da69223c88adf6a2,
         type: 3}
       propertyPath: springPrefab

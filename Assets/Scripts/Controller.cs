@@ -9,21 +9,19 @@ public class Controller : MonoBehaviour
     private float moveInput;
     public float speed = 1500f;
     public GameObject cam;
+    private float camZ;
     private float topScore = 0.0f;
     public Text scoreText;
-    // private float minX, maxX;
+    private float minX, maxX;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        // Camera mainCam = cam.GetComponent<Camera>();
-        // Vector2 tempMin = mainCam.ViewportToWorldPoint(new Vector2(0, 0));
-        // Vector2 tempMax = mainCam.ViewportToWorldPoint(new Vector2(Screen.width, Screen.height));
-        // minX = tempMin.x;
-        // maxX = tempMax.x;
-        // Debug.Log(minX);
-        // Debug.Log(maxX);
+        Camera mainCam = cam.GetComponent<Camera>();
+        maxX = mainCam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z)).x;
+        minX = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z)).x;
+        camZ = cam.transform.position.z;
     }
 
     void FixedUpdate()
@@ -61,18 +59,18 @@ public class Controller : MonoBehaviour
         
         // camera movement
         if(cam.transform.position.y - transform.position.y < 1)
-            cam.transform.position = new Vector3(0, transform.position.y + 1, -15);
+            cam.transform.position = new Vector3(0, transform.position.y + 1, camZ);
 
-        if(cam.transform.position.y - transform.position.y > 10)
+        if(cam.transform.position.y - transform.position.y > 15)
             Destroy(gameObject);
 
         // screen wrap
-        // Vector2 oldPos = transform.position;
-        // if (transform.position.x > Screen.width) {
-        //     transform.position = new Vector2(0, oldPos.y);
-        // }
-        // else if (transform.position.x < 0) {
-        //     transform.position = new Vector3(Screen.width, oldPos.y);
-        // }
+        Vector2 oldPos = transform.position;
+        if (transform.position.x > maxX) {
+            transform.position = new Vector2(minX, oldPos.y);
+        }
+        else if (transform.position.x < minX) {
+            transform.position = new Vector2(maxX, oldPos.y);
+        }
     }
 }
