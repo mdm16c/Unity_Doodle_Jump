@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     private float topScore = 0.0f;
     public Text scoreText;
     private float minX, maxX;
+    public GameManager manny;
+    public Canvas canvas;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class Controller : MonoBehaviour
         maxX = mainCam.ScreenToWorldPoint(new Vector3(0, 0, cam.transform.position.z)).x;
         minX = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z)).x;
         camZ = cam.transform.position.z;
+        manny = canvas.GetComponent<GameManager>();
     }
 
     void FixedUpdate()
@@ -62,7 +65,7 @@ public class Controller : MonoBehaviour
             cam.transform.position = new Vector3(0, transform.position.y + 1, camZ);
 
         if(cam.transform.position.y - transform.position.y > 15)
-            Destroy(gameObject);
+            manny.isGameOver = true;
 
         // screen wrap
         Vector2 oldPos = transform.position;
