@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        ds = player.GetComponentInChildren<Destroy>();
         cam = GameObject.Find("Camera");
         cont = player.GetComponent<Controller>();
         gameOver.enabled = false;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         onStart = false;
+        ds.createStartingPlats();
         Time.timeScale = 1.0f;
     }
 
@@ -60,6 +62,11 @@ public class GameManager : MonoBehaviour
         restart.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
         cont.topScore = 0.0f;
+        GameObject[] thing = GameObject.FindGameObjectsWithTag("Platform");
+        foreach(GameObject mything in thing) {
+            Destroy(mything);
+        }
+        ds.createStartingPlats();
         cam.transform.position = new Vector3(cam.transform.position.x, 1.5f, cam.transform.position.z);
         Time.timeScale = 1.0f;
     }

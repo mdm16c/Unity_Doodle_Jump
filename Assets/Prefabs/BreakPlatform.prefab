@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1487319663358279600}
   m_Layer: 0
   m_Name: BreakPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
