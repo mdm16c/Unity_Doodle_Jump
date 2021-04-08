@@ -10,16 +10,23 @@ public class GameManager : MonoBehaviour
     public Text gameOver;
     public Button start;
     public Button restart;
+    public Button menu;
     public bool isGameOver;
     public bool onStart = true;
-    public Destroyer ds;
+    public Destroy ds;
+    public Controller cont;
+    public GameObject player;
+    public GameObject cam;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        cam = GameObject.Find("Camera");
+        cont = player.GetComponent<Controller>();
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
         Time.timeScale = 0.0f;
-        ds = gameObject.GetComponent<Destroyer>();
     }
 
     // Update is called once per frame
@@ -32,9 +39,11 @@ public class GameManager : MonoBehaviour
         }
         if(isGameOver)
         {
-            Destroy(GameObject.Find("Player"));
+            player.transform.position = new Vector2(0, 0);
+            Time.timeScale = 0.0f;
             gameOver.enabled = true;
             restart.gameObject.SetActive(true);
+            menu.gameObject.SetActive(true);
         }
     }
 
@@ -45,6 +54,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void restartLevel()
+    {
+        isGameOver = false;
+        gameOver.enabled = false;
+        restart.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
+        cont.topScore = 0.0f;
+        cam.transform.position = new Vector3(cam.transform.position.x, 1.5f, cam.transform.position.z);
+        Time.timeScale = 1.0f;
+    }
+
+    public void mainMenu()
     {
         SceneManager.LoadScene("SampleScene");
     }

@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
     public float speed = 1500f;
     public GameObject cam;
     private float camZ;
-    private float topScore = 0.0f;
+    public float topScore = 0.0f;
     public Text scoreText;
     private float minX, maxX;
     public GameManager manny;
