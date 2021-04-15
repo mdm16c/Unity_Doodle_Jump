@@ -632,10 +632,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: c6132076-4e25-4d58-958b-ba2c2d15220a
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: My Doodle Jump
+  organizationId: mdm16c
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
