@@ -12,7 +12,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     public Button start;
     public Button restart;
     public Button menu;
-    public bool isGameOver;
+    public bool isGameOver = false;
     public bool onStart = true;
     public Destroy ds;
     public Controller cont;
@@ -83,6 +83,8 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         }
         if(isGameOver)
         {
+            player.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            player.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             player.transform.position = new Vector2(0, 0);
             Time.timeScale = 0.0f;
             gameOver.enabled = true;

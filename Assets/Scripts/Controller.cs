@@ -76,4 +76,12 @@ public class Controller : MonoBehaviour
             transform.position = new Vector2(maxX, oldPos.y);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            manny.isGameOver = true;
+        }
+
+    }
 }
