@@ -295,23 +295,44 @@ GameObject:
   - component: {fileID: 336931156}
   m_Layer: 0
   m_Name: BigBouncePowerPrefab
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &336931156
-MonoBehaviour:
+--- !u!60 &336931156
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336931155}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25490362e5a5d224a8d0b967c59f384d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.13, y: 0.16}
+      - {x: -0.16, y: 0.14}
+      - {x: -0.16, y: -0.13}
+      - {x: -0.14999999, y: -0.16}
+      - {x: 0.14999999, y: -0.16}
+      - {x: 0.16, y: -0.14}
+      - {x: 0.16, y: 0.14}
+      - {x: 0.13, y: 0.16}
 --- !u!212 &336931157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -370,8 +391,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336931155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4904037, y: -9.677946, z: -126.402596}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.13, y: 10.79, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -730,6 +751,7 @@ MonoBehaviour:
   player: {fileID: 7788711732042327875, guid: def9a3e4bfa1c344da69223c88adf6a2, type: 3}
   cam: {fileID: 0}
   adTestMode: 1
+  mbg: {fileID: 0}
 --- !u!1 &1204373869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,6 +1628,8 @@ MonoBehaviour:
   scoreText: {fileID: 1461791320}
   manny: {fileID: 0}
   canvas: {fileID: 1175015767}
+  extraJumpValue: 400
+  powerUpTime: 3
 --- !u!114 &2110532980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,6 +1776,11 @@ PrefabInstance:
     - target: {fileID: 7788711732042327875, guid: def9a3e4bfa1c344da69223c88adf6a2,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7788711732042327875, guid: def9a3e4bfa1c344da69223c88adf6a2,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7788711732042327900, guid: def9a3e4bfa1c344da69223c88adf6a2,

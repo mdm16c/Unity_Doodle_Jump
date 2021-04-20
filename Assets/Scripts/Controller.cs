@@ -15,6 +15,10 @@ public class Controller : MonoBehaviour
     private float minX, maxX;
     public GameManagerThing manny;
     public Canvas canvas;
+    public float extraJumpValue = 400f;
+    public float powerUpTime = 3f;
+    private float extraJumpDelta = 0f;
+    private bool canDoIt = true;
 
     // Start is called before the first frame update
     void Start()
@@ -76,12 +80,30 @@ public class Controller : MonoBehaviour
             transform.position = new Vector2(maxX, oldPos.y);
         }
     }
+
+    public float getExtraJump() {
+        return extraJumpDelta;
+    }
+
+    IEnumerator ExecuteAfterTime(float time) {
+        yield return new WaitForSeconds(time);
+        extraJumpDelta = 0f;
+        canDoIt = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Enemy")
         {
             manny.isGameOver = true;
         }
-
+        else if(collision.gameObject.tag == "Powerup") {
+            if (canDoIt) {
+                extraJumpDelta = extraJumpValue;
+                canDoIt = false;
+                StartCoroutine(ExecuteAfterTime(powerUpTime));
+            }
+            Destroy(collision.gameObject);
+        }
     }
 }
