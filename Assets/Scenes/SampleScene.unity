@@ -1692,7 +1692,7 @@ MonoBehaviour:
   speed: 10
   cam: {fileID: 35630775}
   topScore: 0
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 199600557}
   manny: {fileID: 0}
   canvas: {fileID: 1175015767}
   extraJumpValue: 400
