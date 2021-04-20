@@ -8,8 +8,19 @@ public class moveBG : MonoBehaviour
     public Transform topBackground;
     private float delta;
     private bool centerMove = true;
+    private float topBGPos;
+    private float centerBGPos;
+    private float deltaCopy;
     private void Start() {
+        topBGPos = topBackground.position.y;
+        centerBGPos = centerBackground.position.y;
         delta = topBackground.position.y - centerBackground.position.y;
+        deltaCopy = delta;
+    }
+    public void resetBG() {
+        delta = deltaCopy;
+        centerBackground.position = new Vector2(centerBackground.position.x, centerBGPos);
+        topBackground.position = new Vector2(topBackground.position.x, topBGPos);
     }
     void Update() {
         if (centerMove) {

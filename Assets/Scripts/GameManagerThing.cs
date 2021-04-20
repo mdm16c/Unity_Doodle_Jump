@@ -21,6 +21,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     private bool needToShowAd = true;
     private string gameId = "4091475";
     public bool adTestMode = true;
+    public moveBG mbg;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         ds = player.GetComponentInChildren<Destroy>();
         cam = GameObject.Find("Camera");
         cont = player.GetComponent<Controller>();
+        mbg = player.GetComponent<moveBG>();
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
@@ -106,6 +108,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
 
     public void restartLevel()
     {
+        mbg.resetBG();
         isGameOver = false;
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);
