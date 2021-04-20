@@ -109,6 +109,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     public void restartLevel()
     {
         mbg.resetBG();
+        cont.resetPowerUpEarly();
         isGameOver = false;
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);

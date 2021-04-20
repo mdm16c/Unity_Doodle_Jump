@@ -85,6 +85,11 @@ public class Controller : MonoBehaviour
         return extraJumpDelta;
     }
 
+    public void resetPowerUpEarly() {
+        extraJumpDelta = 0f;
+        canDoIt = true;
+    }
+
     IEnumerator ExecuteAfterTime(float time) {
         yield return new WaitForSeconds(time);
         extraJumpDelta = 0f;
@@ -97,13 +102,15 @@ public class Controller : MonoBehaviour
         {
             manny.isGameOver = true;
         }
-        else if(collision.gameObject.tag == "Powerup") {
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Powerup") {
             if (canDoIt) {
                 extraJumpDelta = extraJumpValue;
                 canDoIt = false;
                 StartCoroutine(ExecuteAfterTime(powerUpTime));
             }
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }
