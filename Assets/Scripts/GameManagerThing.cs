@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Advertisements;
+using TMPro;
 
 public class GameManagerThing : MonoBehaviour, IUnityAdsListener
 {
-    public Text title;
-    public Text gameOver;
+    public TMP_Text title;
+    public TMP_Text gameOver;
     public Button start;
     public Button restart;
     public Button menu;

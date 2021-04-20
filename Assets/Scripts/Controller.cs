@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Controller : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Controller : MonoBehaviour
     public GameObject cam;
     private float camZ;
     public float topScore = 0.0f;
-    public Text scoreText;
+    public TMP_Text scoreText;
     private float minX, maxX;
     public GameManagerThing manny;
     public Canvas canvas;
