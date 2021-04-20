@@ -118,6 +118,14 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         foreach(GameObject mything in thing) {
             Destroy(mything);
         }
+        thing = GameObject.FindGameObjectsWithTag("Powerup");
+        foreach(GameObject mything in thing) {
+            Destroy(mything);
+        }
+        thing = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject mything in thing) {
+            Destroy(mything);
+        }
         ds.createStartingPlats();
         cam.transform.position = new Vector3(cam.transform.position.x, 1.5f, cam.transform.position.z);
         Time.timeScale = 1.0f;
