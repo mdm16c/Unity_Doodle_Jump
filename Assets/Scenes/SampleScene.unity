@@ -1873,6 +1873,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7788711730967030924, guid: def9a3e4bfa1c344da69223c88adf6a2,
         type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 35630775}
+    - target: {fileID: 7788711730967030924, guid: def9a3e4bfa1c344da69223c88adf6a2,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2110532974}
