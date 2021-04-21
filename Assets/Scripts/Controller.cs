@@ -101,17 +101,20 @@ public class Controller : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
+            Destroy(collision.gameObject);
             manny.isGameOver = true;
         }
+        
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Powerup") {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if(collision.gameObject.tag == "Powerup" && gameObject.tag != "Destroyer") {
             if (canDoIt) {
+                Debug.Log("did it");
                 extraJumpDelta = extraJumpValue;
                 canDoIt = false;
                 StartCoroutine(ExecuteAfterTime(powerUpTime));
             }
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }

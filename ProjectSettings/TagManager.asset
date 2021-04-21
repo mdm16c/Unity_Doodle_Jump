@@ -7,6 +7,8 @@ TagManager:
   - Platform
   - Enemy
   - Powerup
+  - Destroyer
+  - Revive Platform
   layers:
   - Default
   - TransparentFX

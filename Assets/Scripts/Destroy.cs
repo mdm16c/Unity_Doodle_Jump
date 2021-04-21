@@ -9,6 +9,7 @@ public class Destroy : MonoBehaviour
     public GameObject platformPrefab;
     public GameObject springPrefab;
     public GameObject breakPrefab;
+    public GameObject revivePlatformPrefab;
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
     private GameObject myPlat;
@@ -34,6 +35,10 @@ public class Destroy : MonoBehaviour
         myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-screenWidth, screenWidth), player.transform.position.y + (10 + Random.Range(0.5f, 0.8f))), Quaternion.identity);
         myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-screenWidth, screenWidth), player.transform.position.y + (13 + Random.Range(0.5f, 0.8f))), Quaternion.identity);
         myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-screenWidth, screenWidth), player.transform.position.y + (18 + Random.Range(0.5f, 0.8f))), Quaternion.identity);
+    }
+
+    public void createRevivePlatform() {
+        myPlat = (GameObject)Instantiate(revivePlatformPrefab, new Vector2(player.transform.position.x, player.transform.position.y - 1), Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

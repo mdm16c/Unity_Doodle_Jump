@@ -13,6 +13,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     public Button start;
     public Button restart;
     public Button menu;
+    public Button reviveButt;
     public bool isGameOver = false;
     public bool onStart = true;
     public Destroy ds;
@@ -30,9 +31,11 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         ds = player.GetComponentInChildren<Destroy>();
         cam = GameObject.Find("Camera");
         cont = player.GetComponent<Controller>();
+        cont.scoreText.enabled = false;
         mbg = player.GetComponent<moveBG>();
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);
+        reviveButt.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
         Time.timeScale = 0.0f;
         Advertisement.Initialize(gameId, adTestMode);
@@ -53,9 +56,20 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsDidFinish (string surfacingId, ShowResult showResult) {
         // Define conditional logic for each ad completion status:
-        if (showResult == ShowResult.Finished) {
+        if (showResult == ShowResult.Finished && surfacingId == "rewardedVideo") {
             // Reward the user for watching the ad to completion.
             Debug.Log("The ad was finished.");
+            Debug.Log(surfacingId);
+            cont.resetPowerUpEarly();
+            player.transform.position = new Vector2(0, cont.topScore);
+            ds.createRevivePlatform();
+            isGameOver = false;
+            gameOver.enabled = false;
+            restart.gameObject.SetActive(false);
+            reviveButt.gameObject.SetActive(false);
+            menu.gameObject.SetActive(false);
+            needToShowAd = true;
+            Time.timeScale = 1.0f;
         }
         else if (showResult == ShowResult.Skipped) {
             // Do not reward the user for skipping the ad.
@@ -75,6 +89,15 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
             Advertisement.Show("video");
         }
     }
+    public void showRewardedAd() {
+        if (Advertisement.IsReady("rewardedVideo")) {
+            Advertisement.Show("rewardedVideo");
+        }
+    }
+
+    public void revive() {
+        showRewardedAd();
+    }
 
     // Update is called once per frame
     void Update()
@@ -83,6 +106,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         {
             title.enabled = false;
             start.gameObject.SetActive(false);
+            cont.scoreText.enabled = true;
         }
         if(isGameOver)
         {
@@ -92,6 +116,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
             Time.timeScale = 0.0f;
             gameOver.enabled = true;
             restart.gameObject.SetActive(true);
+            reviveButt.gameObject.SetActive(true);
             menu.gameObject.SetActive(true);
             if (needToShowAd) {
                 needToShowAd = false;
@@ -114,9 +139,14 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         isGameOver = false;
         gameOver.enabled = false;
         restart.gameObject.SetActive(false);
+        reviveButt.gameObject.SetActive(false);
         menu.gameObject.SetActive(false);
         cont.topScore = 0.0f;
         GameObject[] thing = GameObject.FindGameObjectsWithTag("Platform");
+        foreach(GameObject mything in thing) {
+            Destroy(mything);
+        }
+        thing = GameObject.FindGameObjectsWithTag("Revive Platform");
         foreach(GameObject mything in thing) {
             Destroy(mything);
         }
