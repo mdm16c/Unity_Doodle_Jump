@@ -26,6 +26,7 @@ public class Destroy : MonoBehaviour
         float minX = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z)).x;
         screenHeight = maxY - minY - .1f;
         screenWidth = (maxX - minX - 3.0f)/2;
+        Debug.Log(screenHeight);
     }
 
     public void createStartingPlats() {
@@ -39,6 +40,10 @@ public class Destroy : MonoBehaviour
 
     public void createRevivePlatform() {
         myPlat = (GameObject)Instantiate(revivePlatformPrefab, new Vector2(player.transform.position.x, player.transform.position.y - 1), Quaternion.identity);
+    }
+
+    public void createSinglePlatform(float y) {
+        myPlat = (GameObject)Instantiate(platformPrefab, new Vector2(Random.Range(-screenWidth, screenWidth), y + screenHeight), Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
