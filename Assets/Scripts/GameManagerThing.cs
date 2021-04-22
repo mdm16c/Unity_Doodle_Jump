@@ -24,6 +24,11 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     private string gameId = "4091475";
     public bool adTestMode = true;
     public moveBG mbg;
+    public AudioClip bounceSound;
+    public AudioClip gameOverSound;
+    public AudioClip powerSound;
+    public AudioClip buttonSound;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,20 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         Time.timeScale = 0.0f;
         Advertisement.Initialize(gameId, adTestMode);
         Advertisement.AddListener (this);
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playBounceSound() {
+        audioSource.PlayOneShot(bounceSound, 1.0f);
+    }
+    public void playGameOverSound() {
+        audioSource.PlayOneShot(gameOverSound, 1.0f);
+    }
+    public void playPowerSound() {
+        audioSource.PlayOneShot(powerSound, 1.0f);
+    }
+    public void playButtonSound() {
+        audioSource.PlayOneShot(buttonSound, 1.0f);
     }
 
     public void OnUnityAdsReady (string placementId) {
@@ -96,6 +115,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     }
 
     public void revive() {
+        playButtonSound();
         showRewardedAd();
     }
 
@@ -128,6 +148,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     public void startGame()
     {
         onStart = false;
+        playButtonSound();
         ds.createStartingPlats();
         Time.timeScale = 1.0f;
     }
@@ -135,6 +156,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
     public void restartLevel()
     {
         mbg.resetBG();
+        playButtonSound();
         cont.resetPowerUpEarly();
         isGameOver = false;
         gameOver.enabled = false;
@@ -166,6 +188,7 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
 
     public void mainMenu()
     {
+        playButtonSound();
         SceneManager.LoadScene("SampleScene");
     }
 }

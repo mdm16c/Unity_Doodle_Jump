@@ -69,8 +69,10 @@ public class Controller : MonoBehaviour
         if(cam.transform.position.y - transform.position.y < 1)
             cam.transform.position = new Vector3(0, transform.position.y + 1, camZ);
 
-        if(cam.transform.position.y - transform.position.y > 15)
+        if(cam.transform.position.y - transform.position.y > 15) {
             manny.isGameOver = true;
+            manny.playGameOverSound();
+        }
 
         // screen wrap
         Vector2 oldPos = transform.position;
@@ -103,11 +105,13 @@ public class Controller : MonoBehaviour
         {
             Destroy(collision.gameObject);
             manny.isGameOver = true;
+            manny.playGameOverSound();
         }
         
     }
     private void OnTriggerEnter2D(Collider2D collision) {
         if(collision.gameObject.tag == "Powerup" && gameObject.tag != "Destroyer") {
+            manny.playPowerSound();
             if (canDoIt) {
                 Debug.Log("did it");
                 extraJumpDelta = extraJumpValue;

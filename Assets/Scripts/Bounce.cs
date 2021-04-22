@@ -5,8 +5,10 @@ using UnityEngine;
 public class Bounce : MonoBehaviour
 {
     public Controller cont;
+    public GameManagerThing gm;
     private void Start() {
         cont = GameObject.Find("Player").GetComponent<Controller>();
+        gm = GameObject.Find("Canvas").GetComponent<GameManagerThing>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,6 +17,7 @@ public class Bounce : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up * (600f + cont.getExtraJump()));
+            gm.playBounceSound();
 
         }
 
