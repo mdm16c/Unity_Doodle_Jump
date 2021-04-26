@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     private float camZ;
     public float topScore = 0.0f;
     public TMP_Text scoreText;
+    public TMP_Text highscoreText;
     private float minX, maxX;
     public GameManagerThing manny;
     public Canvas canvas;
@@ -30,6 +31,7 @@ public class Controller : MonoBehaviour
         minX = mainCam.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, cam.transform.position.z)).x;
         camZ = cam.transform.position.z;
         manny = canvas.GetComponent<GameManagerThing>();
+        highscoreText.text = "Highscore: " + Mathf.Round(PlayerPrefs.GetFloat("HighScore", 0)).ToString();
     }
 
     void FixedUpdate()

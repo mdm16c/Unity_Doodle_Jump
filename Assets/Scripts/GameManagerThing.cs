@@ -130,6 +130,11 @@ public class GameManagerThing : MonoBehaviour, IUnityAdsListener
         }
         if(isGameOver)
         {
+            if(cont.topScore > PlayerPrefs.GetFloat("HighScore", 0))
+            {
+                PlayerPrefs.SetFloat("HighScore", Mathf.Round(cont.topScore));
+                cont.highscoreText.text = "Highscore: " + Mathf.Round(cont.topScore).ToString();
+            }
             player.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             player.gameObject.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             player.transform.position = new Vector2(0, 0);
