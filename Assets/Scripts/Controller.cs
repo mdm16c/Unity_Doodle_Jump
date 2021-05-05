@@ -52,14 +52,14 @@ public class Controller : MonoBehaviour
         }
 
         // keyboard controls for my sanity (for debug not final product)
-        moveInput = Input.GetAxis("Horizontal");
-        rb2d.velocity = new Vector2(moveInput * 10, rb2d.velocity.y);
-        if (moveInput < 0) {
-            this.GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else if (moveInput > 0) {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-        }
+        // moveInput = Input.GetAxis("Horizontal");
+        // rb2d.velocity = new Vector2(moveInput * 10, rb2d.velocity.y);
+        // if (moveInput < 0) {
+        //     this.GetComponent<SpriteRenderer>().flipX = false;
+        // }
+        // else if (moveInput > 0) {
+        //     this.GetComponent<SpriteRenderer>().flipX = true;
+        // }
         
         // score text
         if (rb2d.velocity.y > 0 && transform.position.y > topScore) {
